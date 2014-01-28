@@ -25,7 +25,6 @@ function drawMercury() {
   context.stroke();
 }
 
-
 function animate() {
   if (thermometer.isAnimating() &&
       thermometer.getElapsedTime() > 10000) { // animation is over
@@ -35,7 +34,6 @@ function animate() {
      redraw();
      requestNextAnimationFrame(animate);
    } 
-  
 }
 
 function redraw() {
@@ -47,6 +45,5 @@ function init() {
   thermometer.start();
   requestNextAnimationFrame(animate); 
 }
-
 
 init();
