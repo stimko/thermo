@@ -1,12 +1,11 @@
 Thermometer = function(){};
 Thermometer.prototype = {
+  startAngle: 0.7 * Math.PI,
   startTime: 0,
   running: false,
-  elaspsed: undefined,
   
   start: function() {
     this.startTime = +new Date();
-    this.elapsedTime = undefined;
     this.running = true;
   },
   
@@ -15,6 +14,10 @@ Thermometer.prototype = {
     this.running = false;
   },
   
+  getCurrentDegrees: function () {
+    return ((this.getElapsedTime()/1000) / 60 * 360)
+  },
+
   getElapsedTime: function() {
     if (this.running) {
       return (+new Date()) - this.startTime;  

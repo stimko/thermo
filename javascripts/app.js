@@ -1,28 +1,32 @@
 var canvas = document.getElementById('thermometer'),
+    context = canvas.getContext('2d'),
+    ANGLE_MULTIPLIER = 8,
+    DEGREE_MULTIPLIER = 4,
     thermometer = new Thermometer(),
-    degreeElement = document.getElementById('degrees'),
-    context = canvas.getContext('2d');
+    degreeElement = document.getElementById('degrees');
 
 function drawMercury() {
-   var initialAngle = 0.7 * Math.PI,
-       angle = initialAngle, 
-       thermometerElapsed = thermometer.getElapsedTime(),
-       degrees;
+  var thermometerElapsed = thermometer.getElapsedTime(),
+      angle,
+      radgrad;
 
   if (thermometerElapsed) {
-     degrees = ((thermometerElapsed/1000) / 60 * 360);
-     angle = ((Math.PI / 180) * degrees) * 8;
-     degreeElement.innerHTML = Math.round(degrees * 4) + '°'; 
+     angle =  convertDegreesToRadians(thermometer.getCurrentDegrees()) * ANGLE_MULTIPLIER;
+     degreeElement.innerHTML = Math.round(thermometer.getCurrentDegrees() * DEGREE_MULTIPLIER) + '°'; 
    }
   
-  var radgrad = context.createRadialGradient(300, 300, 0, 300, 300, 300);
+  radgrad = context.createRadialGradient(300, 300, 0, 300, 300, 300);
   radgrad.addColorStop("0", "blue");
   radgrad.addColorStop("1", "skyblue");
   context.strokeStyle = radgrad;
   context.lineWidth = "45";
   context.beginPath();
-  context.arc(200, 200, 150, initialAngle, (initialAngle + angle), false);
+  context.arc(200, 200, 150, thermometer.startAngle, (thermometer.startAngle + angle), false);
   context.stroke();
+}
+
+function convertDegreesToRadians(degrees){
+  return (Math.PI / 180) * degrees
 }
 
 function animate() {
