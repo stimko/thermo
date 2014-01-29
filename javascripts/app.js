@@ -26,7 +26,7 @@ function drawMercury() {
 }
 
 function convertDegreesToRadians(degrees){
-  return (Math.PI / 180) * degrees
+  return (Math.PI / 180) * degrees;
 }
 
 function animate() {
