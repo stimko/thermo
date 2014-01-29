@@ -2,16 +2,16 @@ Thermometer = function(){};
 Thermometer.prototype = {
   startAngle: 0.7 * Math.PI,
   startTime: 0,
-  running: false,
+  animating: false,
   
   start: function() {
     this.startTime = +new Date();
-    this.running = true;
+    this.animating = true;
   },
   
   stop: function() {
     this.elapsed = (+new Date()) - this.startTime;
-    this.running = false;
+    this.animating = false;
   },
   
   getCurrentDegrees: function () {
@@ -19,7 +19,7 @@ Thermometer.prototype = {
   },
 
   getElapsedTime: function() {
-    if (this.running) {
+    if (this.animating) {
       return (+new Date()) - this.startTime;  
     }
     else {
@@ -28,7 +28,7 @@ Thermometer.prototype = {
   },
   
   isAnimating: function() {
-    return this.running;  
+    return this.animating;  
   },
   
   reset: function(){
