@@ -1,4 +1,4 @@
 thermo
 ======
 
-Weather thermometer created with html5 canvas
+Weather thermometer created with canvas
