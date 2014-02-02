@@ -7,14 +7,7 @@ var canvas = document.getElementById('thermometer'),
     centerX = canvas.width / 2,
     centerY = canvas.height / 2,
     initialAngle = 0.7 * Math.PI,
-    endingAngle = 0.3 * Math.PI,
-    currentR = 34,
-    currentG = 104,
-    currentB = 196,
-    targetRs = [244, 216],
-    targetGs = [211, 17],
-    targetBs = [46, 17];
-
+    endingAngle = 0.3 * Math.PI;
 
 function drawMercury() {
    
@@ -32,7 +25,7 @@ function drawMercury() {
 /*   var radgrad = context.createRadialGradient(300, 200, 100, 300, 300, 300);
   radgrad.addColorStop("0", "skyblue");
   radgrad.addColorStop("1", "blue"); */
-  context.strokeStyle = "rgb(" + currentR + "," + currentG + "," + currentB +")";
+  context.strokeStyle = thermometer.getCurrentColor();
   //244, 211, 46
   //216, 17, 17
   context.lineWidth = "45";
