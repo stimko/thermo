@@ -23,15 +23,15 @@ Thermometer.prototype = {
   },
 
   getCurrentColor: function() {
-    if ((this.getCurrentDegrees() * 4) >= 50) {
-      //this.currentR -= 1;
-      this.currentG -= 3;
-      this.currentB -= 1;  
+    if ((this.getCurrentDegrees() * 4) >= 60) {
+      this.currentR += .5;
+      this.currentG -= 1;
+      this.currentB -= .5;  
 
     } else {
-      this.currentR += 2;
-      this.currentG += 1;
-      this.currentB -= 1;  
+      this.currentR += 1;
+      this.currentG += .5;
+      this.currentB -= .5;  
     }
     return "rgb(" + Math.floor(this.currentR) + "," + Math.floor(this.currentG) + "," + Math.floor(this.currentB) +")";
   },
