@@ -1,6 +1,7 @@
 Thermometer = function(){};
 Thermometer.prototype = {
   startAngle: 0.7 * Math.PI,
+  degrees: 0,
   startTime: 0,
   animating: false,
   
