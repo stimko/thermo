@@ -1,7 +1,7 @@
 var canvas = document.getElementById('thermometer'),
     context = canvas.getContext('2d'),
-    ANGLE_MULTIPLIER = 8,
-    DEGREE_MULTIPLIER = 4,
+    ANGLE_MULTIPLIER = 10,
+    DEGREE_MULTIPLIER = 7,
     thermometer = new Thermometer(),
     degreeElement = document.getElementById('degrees'),
     centerX = canvas.width / 2,
@@ -18,7 +18,7 @@ function drawMercury() {
   if (thermometerElapsed) {
      degrees = thermometer.getCurrentDegrees();
      angle = ((Math.PI / 180) * degrees) * ANGLE_MULTIPLIER;
-     degreeElement.innerHTML = Math.round(degrees * 4) + '°'; 
+     degreeElement.innerHTML = Math.round(degrees * DEGREE_MULTIPLIER) + '°'; 
    }
   
   context.save();
@@ -41,7 +41,7 @@ function convertDegreesToRadians(degrees){
 
 function animate() {
   if (thermometer.isAnimating() &&
-      thermometer.getCurrentDegrees() * 4 > 145) { // animation is over
+      thermometer.getCurrentDegrees() * DEGREE_MULTIPLIER >= 60) { // animation is over
       thermometer.stop();
    }
    else if (thermometer.isAnimating()) { // animation is running

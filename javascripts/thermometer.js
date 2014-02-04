@@ -2,15 +2,15 @@ Thermometer = function(){};
 Thermometer.prototype = {
   startAngle: 0.7 * Math.PI,
   degrees: 0,
-  targetDegrees: 90,
+  targetDegrees: 60,
   startTime: 0,
   animating: false,
-  currentR: 34,
-  currentG: 104,
-  currentB: 196,
-  targetRs: [244, 216],
-  targetGs: [191, 17],
-  targetBs: [46, 17],
+  startR: 34,
+  startG: 104,
+  startB: 196,
+  targetR: 255, 
+  targetG: 171, 
+  targetB: 82,
   
   start: function() {
     this.startTime = +new Date();
@@ -23,17 +23,14 @@ Thermometer.prototype = {
   },
 
   getCurrentColor: function() {
-    if ((this.getCurrentDegrees() * 4) >= 60) {
-      this.currentR += 1;
-      this.currentG -= 1;
-      this.currentB -= 1;  
+    var degrees = this.getCurrentDegrees() * 7;
+    var percentage = (degrees/this.targetDegrees);
+    
+    var currentR = this.startR + ((this.targetR - this.startR) * percentage)
+    var currentG = this.startG + ((this.targetG - this.startG) * percentage)
+    var currentB = this.startB + ((this.targetB - this.startB) * percentage)
 
-    } else {
-      this.currentR += 1.2;
-      this.currentG += .5;
-      this.currentB -= 1;  
-    }
-    return "rgb(" + Math.floor(this.currentR) + "," + Math.floor(this.currentG) + "," + Math.floor(this.currentB) +")";
+    return "rgb(" + Math.floor(currentR) + "," + Math.floor(currentG) + "," + Math.floor(currentB) +")";
   },
   
   getCurrentDegrees: function () {
