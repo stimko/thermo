@@ -41,7 +41,7 @@ function convertDegreesToRadians(degrees){
 
 function animate() {
   if (thermometer.isAnimating() &&
-      thermometer.getCurrentDegrees() * DEGREE_MULTIPLIER >= 60) { // animation is over
+      thermometer.getCurrentDegrees() * DEGREE_MULTIPLIER >= thermometer.targetDegrees) { // animation is over
       thermometer.stop();
    }
    else if (thermometer.isAnimating()) { // animation is running
@@ -72,7 +72,7 @@ function drawBackDrop() {
 }
 
 function init() {
-  thermometer.start();
+  thermometer.start(45);
   requestNextAnimationFrame(animate); 
 }
 

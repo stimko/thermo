@@ -2,17 +2,26 @@ Thermometer = function(){};
 Thermometer.prototype = {
   startAngle: 0.7 * Math.PI,
   degrees: 0,
-  targetDegrees: 60,
+  targetDegrees: 32,
   startTime: 0,
   animating: false,
   startR: 34,
   startG: 104,
   startB: 196,
-  targetR: 255, 
-  targetG: 171, 
-  targetB: 82,
+  targetR: 0, 
+  targetG: 0, 
+  targetB: 0,
+
+  spectrum: [
+    {"0": [34, 104, 196]},
+    {"32":[82, 205, 242]},
+    {"40": [242, 250, 230]},
+    {"60":[255, 171, 82]},
+    {"90":[255, 171, 82]}
+  ],
   
-  start: function() {
+  start: function(targetDegrees) {
+    this.setTargetColors(targetDegrees);
     this.startTime = +new Date();
     this.animating = true;
   },
@@ -32,7 +41,27 @@ Thermometer.prototype = {
 
     return "rgb(" + Math.floor(currentR) + "," + Math.floor(currentG) + "," + Math.floor(currentB) +")";
   },
-  
+
+  setTargetColors: function (targetDegrees) {
+    this.targetDegrees = targetDegrees;
+    var i = this.spectrum.length;
+    while (i--) {
+      var threshold = Object.keys(this.spectrum[i])[0],
+          nextThreshold = Object.keys(this.spectrum[i-1])[0];
+
+      if (targetDegrees <= threshold && targetDegrees > nextThreshold) {
+        var thresholdDifference = Object.keys(this.spectrum[i])[0] - Object.keys(this.spectrum[i-1])[0];
+        var differenceInDegrees = targetDegrees - nextThreshold;
+        var percentage = differenceInDegrees/thresholdDifference;
+
+        this.targetR = Math.round(this.spectrum[i-1][nextThreshold][0] + ((this.spectrum[i][threshold][0] - this.spectrum[i-1][nextThreshold][0]) * percentage));
+        this.targetG = Math.round(this.spectrum[i-1][nextThreshold][1] + ((this.spectrum[i][threshold][1] - this.spectrum[i-1][nextThreshold][1]) * percentage));
+        this.targetB = Math.round(this.spectrum[i-1][nextThreshold][2] + ((this.spectrum[i][threshold][2] - this.spectrum[i-1][nextThreshold][2]) * percentage));
+        break;              
+      }
+    }            
+
+  },
   getCurrentDegrees: function () {
     return ((this.getElapsedTime()/1000) / 60 * 360)
   },
