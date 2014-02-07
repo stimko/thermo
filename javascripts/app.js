@@ -41,8 +41,13 @@ function animate() {
 function redraw(degrees) {
   context.clearRect(0, 0, canvas.width, canvas.height);
   drawBackDrop();
+  drawConditions();
   drawMercury(degrees); 
 }
+function drawConditions(){
+  Conditions['rain']();
+}
+
 function drawBackDrop() {
   var radius = 160;
   context.beginPath();
@@ -58,7 +63,7 @@ function drawBackDrop() {
   context.stroke();    
 }
 function init() {
-  thermometer.start(58);
+  thermometer.start(75);
   requestNextAnimationFrame(animate); 
 }
 init();
