@@ -9,7 +9,6 @@ var canvas = document.getElementById('thermometer'),
     endingAngle = 0.3 * Math.PI;
 
 function drawMercury(degrees) {
-   
   var angle = initialAngle, 
       thermometerElapsed = thermometer.getElapsedTime();
 
