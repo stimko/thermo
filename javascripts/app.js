@@ -11,12 +11,10 @@ var canvas = document.getElementById('thermometer'),
 function drawMercury(degrees) {
   var angle = initialAngle, 
       thermometerElapsed = thermometer.getElapsedTime();
-
   if (thermometerElapsed) {
      angle = convertDegreesToRadians(degrees) * ANGLE_MULTIPLIER;
      degreeElement.innerHTML = thermometer.getCurrentTemperatureDegrees() + '°'; 
    }
-  
   context.strokeStyle = thermometer.getCurrentColor();
   context.lineWidth = "45";
   context.beginPath();
