@@ -1,8 +1,10 @@
 Thermometer = function(){};
 Thermometer.prototype = {
   startAngle: 0.7 * Math.PI,
+  DEGREE_MULTIPLIER: 7,
   degrees: 0,
-  targetDegrees: 32,
+  targetDegrees: 0,
+  currentDegrees:0,
   startTime: 0,
   animating: false,
   startR: 34,
@@ -16,7 +18,7 @@ Thermometer.prototype = {
     {"32":[82, 205, 242]},
     {"40": [242, 250, 230]},
     {"60":[255, 171, 82]},
-    {"90":[255, 171, 82]}
+    {"90":[255, 37, 8]}
   ],
   start: function(targetDegrees) {
     this.setTargetColors(targetDegrees);
@@ -28,9 +30,7 @@ Thermometer.prototype = {
     this.animating = false;
   },
   getCurrentColor: function() {
-    var degrees = this.getCurrentDegrees() * 7;
-    var percentage = (degrees/this.targetDegrees);
-    
+    var percentage = (this.getCurrentTemperatureDegrees()/this.targetDegrees);
     var currentR = this.computeRGB(this.startR ,this.targetR, percentage);
     var currentG = this.computeRGB(this.startG ,this.targetG, percentage);
     var currentB = this.computeRGB(this.startB ,this.targetB, percentage);
@@ -59,8 +59,11 @@ Thermometer.prototype = {
   computeRGB: function (start, end, percentage){
     return Math.round(start + ((end - start) * percentage));
   },
-  getCurrentDegrees: function () {
+  getCurrentAngleDegrees: function () {
     return ((this.getElapsedTime()/1000) / 60 * 360)
+  },
+  getCurrentTemperatureDegrees: function (){
+    return Math.round(this.getCurrentAngleDegrees() * this.DEGREE_MULTIPLIER);  
   },
   getElapsedTime: function() {
     if (this.animating) {
