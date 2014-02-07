@@ -28,21 +28,22 @@ function convertDegreesToRadians(degrees){
 }
 function animate() {
   if (thermometer.isAnimating() &&
-      thermometer.getCurrentTemperatureDegrees() >= thermometer.targetDegrees) {
+      thermometer.currentTemperatureDegrees >= thermometer.targetDegrees) {
       thermometer.stop();
-      if (thermometer.getCurrentTemperatureDegrees() !== thermometer.targetDegrees){
-        //drawMercury(thermometer.targetDegrees);
+      if (thermometer.currentTemperatureDegrees !== thermometer.targetDegrees){
+        thermometer.currentAngleDegrees = ((thermometer.targetDegrees * thermometer.currentAngleDegrees)/thermometer.currentTemperatureDegrees);
+        redraw(thermometer.currentAngleDegrees);
       }
    }
-   else if (thermometer.isAnimating()) { // animation is running
-     redraw();
+   else if (thermometer.isAnimating()) {
+     redraw(thermometer.getCurrentAngleDegrees());
      requestNextAnimationFrame(animate);
    } 
 }
-function redraw() {
+function redraw(degrees) {
   context.clearRect(0, 0, canvas.width, canvas.height);
   drawBackDrop();
-  drawMercury(thermometer.getCurrentAngleDegrees()); 
+  drawMercury(degrees); 
 }
 function drawBackDrop() {
   var radius = 160;
@@ -59,7 +60,7 @@ function drawBackDrop() {
   context.stroke();    
 }
 function init() {
-  thermometer.start(31);
+  thermometer.start(58);
   requestNextAnimationFrame(animate); 
 }
 init();
