@@ -1,4 +1,4 @@
 thermo
 ======
 
-Weather thermometer created with canvas
+Weather thermometer created with canvas inspired by the weather channel
