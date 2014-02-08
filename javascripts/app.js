@@ -5,8 +5,8 @@ var canvas = document.getElementById('thermometer'),
     degreeElement = document.getElementById('degrees'),
     centerX = canvas.width / 2,
     centerY = canvas.height / 2,
-    initialAngle = 0.7 * Math.PI,
-    endingAngle = 0.3 * Math.PI;
+    initialAngle = 0.75 * Math.PI,
+    endingAngle = 0.25 * Math.PI;
 
 function drawMercury(degrees) {
   var angle = initialAngle, 
@@ -63,7 +63,7 @@ function drawBackDrop() {
   context.stroke();    
 }
 function init() {
-  thermometer.start(75);
+  thermometer.start(55);
   requestNextAnimationFrame(animate); 
 }
 init();

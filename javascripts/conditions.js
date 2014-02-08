@@ -1,22 +1,25 @@
 Conditions = {
   "rain": function(){
-    context.lineWidth = 10;
+    context.lineWidth = 6;
     context.strokeStyle = 'white';
     context.beginPath();
-    context.moveTo(275, 160);
-    context.bezierCurveTo(205, 210, 305, 230, 275, 160);
+    context.moveTo(280, 180);
+    context.bezierCurveTo(240, 210, 300, 220, 280, 180);
     context.closePath();
     context.stroke();
     context.beginPath();
-    context.moveTo(220, 190);
-    context.bezierCurveTo(150, 240, 250, 260, 220, 190);
+    context.moveTo(230, 210);
+    context.bezierCurveTo(190, 240, 250, 250, 230, 210);
     context.closePath();
     context.stroke();
     context.beginPath();
-    context.moveTo(250, 110);
-    context.bezierCurveTo(180, 160, 280, 180, 250, 110);
+    context.moveTo(255, 140);
+    context.bezierCurveTo(215, 170, 275, 180, 255, 140);
     context.closePath();
     context.stroke();
-  }
-
+  },
+  "cloudy": function(){},
+  "sunny": function(){},
+  "partly cloudy": function(){},
+  "snow": function(){}
 }
