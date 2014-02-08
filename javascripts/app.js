@@ -21,9 +21,11 @@ function drawMercury(degrees) {
   context.arc(centerX, centerY, 150, initialAngle, (initialAngle + angle), false);
   context.stroke();
 }
+
 function convertDegreesToRadians(degrees){
   return (Math.PI / 180) * degrees;
 }
+
 function animate() {
   if (thermometer.isAnimating() &&
       thermometer.currentTemperatureDegrees >= thermometer.targetDegrees) {
@@ -38,12 +40,14 @@ function animate() {
      requestNextAnimationFrame(animate);
    } 
 }
+
 function redraw(degrees) {
   context.clearRect(0, 0, canvas.width, canvas.height);
   drawBackDrop();
   drawConditions();
   drawMercury(degrees); 
 }
+
 function drawConditions(){
   Conditions['rain']();
 }
@@ -62,8 +66,10 @@ function drawBackDrop() {
   context.strokeStyle = '#D4D4D4';
   context.stroke();    
 }
+
 function init() {
   thermometer.start(20);
   requestNextAnimationFrame(animate); 
 }
+
 init();
