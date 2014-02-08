@@ -63,7 +63,7 @@ function drawBackDrop() {
   context.stroke();    
 }
 function init() {
-  thermometer.start(55);
+  thermometer.start(20);
   requestNextAnimationFrame(animate); 
 }
 init();

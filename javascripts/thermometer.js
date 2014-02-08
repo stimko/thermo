@@ -19,7 +19,7 @@ Thermometer.prototype = {
     {"32":[82, 205, 242]},
     {"40": [242, 250, 230]},
     {"60":[255, 171, 82]},
-    {"90":[255, 37, 8]}
+    {"110":[255, 60, 20]}
   ],
   start: function(targetDegrees) {
     this.setTargetColors(targetDegrees);
