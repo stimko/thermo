@@ -1,7 +1,7 @@
 Thermometer = function(){};
 Thermometer.prototype = {
   startAngle: 0.7 * Math.PI,
-  DEGREE_MULTIPLIER: 7,
+  DEGREE_MULTIPLIER: 5,
   degrees: 0,
   targetDegrees: 0,
   currentAngleDegrees:0,
@@ -80,6 +80,8 @@ Thermometer.prototype = {
     return this.animating;  
   },
   reset: function(){
+    this.currentTemperatureDegrees = 0;
+    this.currentAngleDegrees = 0;
     this.elapsed = 0;
   }
 };

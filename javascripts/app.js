@@ -1,6 +1,6 @@
 var canvas = document.getElementById('thermometer'),
     context = canvas.getContext('2d'),
-    ANGLE_MULTIPLIER = 10,
+    ANGLE_MULTIPLIER = 8,
     thermometer = new Thermometer(),
     degreeElement = document.getElementById('degrees'),
     centerX = canvas.width / 2,
@@ -67,9 +67,16 @@ function drawBackDrop() {
   context.stroke();    
 }
 
+function transition(degrees){
+  thermometer.reset();
+  redraw();
+  degrees = degrees || +document.getElementById('targetDegrees').value || 0;
+  thermometer.start(degrees);
+  requestNextAnimationFrame(animate);
+}
+
 function init() {
-  thermometer.start(20);
-  requestNextAnimationFrame(animate); 
+  transition(20);
 }
 
 init();

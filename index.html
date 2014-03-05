@@ -7,8 +7,10 @@
   <title>Thermo.js</title>
   </head>
   <body>
-    <label id="degrees">56°</label>
+    <label id="degrees"></label>
     <canvas id="thermometer" width="500" height="500">Upgrade your browser!</canvas>
+    <input id="targetDegrees" type="text">
+    <button onclick="transition()">Transition</button>
     <script src="javascripts/requestNextAnimationFrame.js"></script>
     <script src="javascripts/conditions.js"></script>
     <script src="javascripts/thermometer.js"></script>
